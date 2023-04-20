@@ -1,0 +1,56 @@
+#For partition
+tdm_control -type hstdm
+tdm_control -hstdm_bit_rate 1400
+tdm_control -qualification_mode  all
+#tdm_control -max_ratio 16
+tdm_control -max_ratio 8 
+
+#cell assign
+bin_attribute {FB1.uC FB1.uD} -locked
+#assign_cell {top} {FB1.uA}
+#assign_cell {U0} {FB1.uB}
+
+#Global clock assign
+assign_global_net {clk} {GCLK1}
+#assign_global_net {clk2} {GCLK2}
+
+#reset
+assign_virtual_port -port {rst} -type USR_LOCAL_RESET -bin {FB1.uA}
+reset_synchronize -toplevel_net {rst} -clock {clk} -init {0} -extra_pipeline_stages {2}
+
+#TOP IO assign
+assign_port {out_data[0]} {TOP_IO_HT3_FB1_B5/A[2]}
+assign_port {out_data[1]} {TOP_IO_HT3_FB1_B5/A[3]}
+assign_port {out_data[2]} {TOP_IO_HT3_FB1_B5/A[4]}
+assign_port {out_data[3]} {TOP_IO_HT3_FB1_B5/A[5]}
+assign_port {out_data[4]} {TOP_IO_HT3_FB1_B5/A[6]}
+assign_port {out_data[5]} {TOP_IO_HT3_FB1_B5/A[7]}
+assign_port {out_data[6]} {TOP_IO_HT3_FB1_B5/A[8]}
+assign_port {out_data[7]} {TOP_IO_HT3_FB1_B5/A[9]}
+assign_port {out_data[8]} {TOP_IO_HT3_FB1_B5/A[10]}
+assign_port {out_data[9]} {TOP_IO_HT3_FB1_B5/A[11]}
+
+assign_port {out_data[10]} {TOP_IO_HT3_FB1_B5/B[2]}
+assign_port {out_data[11]} {TOP_IO_HT3_FB1_B5/B[3]}
+
+assign_port {in_rdy} {TOP_IO_HT3_FB1_B5/B[4]}
+assign_port {out_valid} {TOP_IO_HT3_FB1_B5/B[5]}
+
+assign_port {err_data[0]} {TOP_IO_HT3_FB1_B5/B[6]}
+assign_port {err_data[1]} {TOP_IO_HT3_FB1_B5/B[7]}
+
+assign_port {err_valid} {TOP_IO_HT3_FB1_B5/B[8]}
+
+assign_port {in_data[0]} {TOP_IO_HT3_FB1_B5/B[9]}
+assign_port {in_data[1]} {TOP_IO_HT3_FB1_B5/B[10]}
+assign_port {in_data[2]} {TOP_IO_HT3_FB1_B5/B[11]}
+assign_port {in_data[3]} {TOP_IO_HT3_FB1_B5/C[2]}
+assign_port {in_data[4]} {TOP_IO_HT3_FB1_B5/C[3]}
+assign_port {in_data[5]} {TOP_IO_HT3_FB1_B5/C[4]}
+assign_port {in_data[6]} {TOP_IO_HT3_FB1_B5/C[5]}
+assign_port {in_data[7]} {TOP_IO_HT3_FB1_B5/C[6]}
+
+assign_port {in_valid} {TOP_IO_HT3_FB1_B5/C[7]}
+assign_port {storage_reset} {TOP_IO_HT3_FB1_B5/C[8]}
+
+
